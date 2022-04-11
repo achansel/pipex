@@ -6,7 +6,7 @@
 /*   By: achansel <achansel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:13:52 by achansel          #+#    #+#             */
-/*   Updated: 2022/03/27 22:51:43 by achansel         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:12:17 by achansel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ char	**split(char *cmd, char delim)
 	char	*s;
 	int		i;
 
-	hihi = malloc(1000 * sizeof(char *));
+	hihi = malloc(10000 * sizeof(char *));
 	i = 0;
-	while (i < 1000)
+	while (i < 10000)
 		hihi[i++] = NULL;
 	i = 0;
 	if (cmd <= (char *) 1024)
