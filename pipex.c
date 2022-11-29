@@ -6,7 +6,7 @@
 /*   By: achansel <achansel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:13:52 by achansel          #+#    #+#             */
-/*   Updated: 2022/03/30 16:12:17 by achansel         ###   ########.fr       */
+/*   Updated: 2022/11/27 12:09:06 by achansel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/syslimits.h>
 
 #define SUCCESS 0
 #define ERROR 1
@@ -58,15 +59,15 @@ char	**split(char *cmd, char delim)
 	char	*s;
 	int		i;
 
-	hihi = malloc(10000 * sizeof(char *));
+	hihi = malloc(ARG_MAX * sizeof(char *));
 	i = 0;
-	while (i < 10000)
+	while (i < ARG_MAX)
 		hihi[i++] = NULL;
 	i = 0;
-	if (cmd <= (char *) 1024)
+	if (cmd <= (char *) PATH_MAX)
 		exit(write(1, "Error: PATH is unset\n", 21));
 	s = NULL;
-	while (*(++cmd))
+	while (*(++cmd) && i < ARG_MAX)
 	{
 		if (*cmd == delim && s != NULL)
 		{
